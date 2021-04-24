@@ -2,12 +2,15 @@ import express, { Application } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import morgan from 'morgan';
+
 import { TaskController } from './Controllers/TaskController';
+import DatabaseConnection from './Database/DatabaseConfiguration';
 
 export class ExpressApplication {
   public constructor() {
     this.app = express();
     this.setMiddleware();
+    this.connectToDatabase();
   }
 
   private app: Application;
@@ -23,5 +26,9 @@ export class ExpressApplication {
 
   public startApp(): void {
     this.app.listen(this.app.get('port'), () => console.log(`Task Service listening on port ${this.app.get('port')}`));
+  }
+
+  private connectToDatabase(): void {
+    DatabaseConnection();
   }
 }
