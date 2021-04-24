@@ -20,6 +20,7 @@ export class ExpressApplication {
     this.app.use(helmet());
     this.app.use(cors());
     this.app.use(morgan('dev'));
+    this.app.use(express.json());
 
     this.app.use('/', new TaskController().createRouter());
   }
