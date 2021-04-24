@@ -1,6 +1,6 @@
 import { ExpressApplication } from './ExpressApplication';
 
-(function () {
+(function (): void {
   const app = new ExpressApplication();
   app.startApp();
 })();
