@@ -1,2 +1,3 @@
 # agile-task-services
-A system of microservices for the lightweight modern agyle task manger.
+
+A system of microservices for the lightweight modern agile task manger.

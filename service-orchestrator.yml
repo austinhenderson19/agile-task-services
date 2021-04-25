@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+  task-api:
+    build:
+      context: ./tasks/
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    
+  mongodb:
+    image: mongo
+    logging:
+      driver: none
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./tasks/src/Database/PersistentData:/data/db
+  
