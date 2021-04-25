@@ -1,75 +1,131 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        spa
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+    <welcome-message v-if="showWelcomeMessage" @finsihedAnimation="removeWelcomeMessage"></welcome-message>
+    <div v-if="!showWelcomeMessage" class="inner-container">
+      <div class="input-container" id="main-input">
+        <label class="block" for="type" :style="{backgroundColor: typeColor}"></label>
+        <select name="type" id="type" v-model="selectedType">
+          <option value="1">Epic</option>
+          <option value="2">Story</option>
+          <option value="3">Bug</option>
+        </select>
+        <input type="text" :placeholder="placeholderText" />
       </div>
+      <div class="list"></div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from "vue";
+import WelcomeMessage from "../components/WelcomeMessage.vue";
 
-export default Vue.extend({})
+export default Vue.extend({
+  components: {
+    "welcome-message": WelcomeMessage,
+  },
+  data() {
+    return {
+      showWelcomeMessage: true,
+      selectedType: 1,
+    };
+  },
+  methods: {
+    removeWelcomeMessage() {
+      this.showWelcomeMessage = false;
+    },
+  },
+  computed: {
+    typeColor() {
+      if (this.selectedType == 1) {
+        return "#904EE2";
+      }
+
+      if (this.selectedType == 2) {
+        return "#63BA3C";
+      }
+
+      if (this.selectedType == 3) {
+        return "#FD6666";
+      }
+    },
+    placeholderText() {
+      if (this.selectedType == 1) {
+        return "What would you like to call your Epic?";
+      }
+
+      if (this.selectedType == 2) {
+        return "What will your Story be called?";
+      }
+
+      if (this.selectedType == 3) {
+        return "What Bug will you be squashing?";
+      }
+    },
+  },
+});
 </script>
 
-<style>
+<style scoped >
 .container {
   margin: 0 auto;
   min-height: 100vh;
+}
+
+.inner-container {
+  height: 100vh;
+  width: 100vw;
   display: flex;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  justify-content: center;
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+.inner-container input {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  font-size: 1rem;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+.inner-container input:hover,
+.inner-container input:active,
+.inner-container input:focus,
+.inner-container input {
+  border: none;
+  outline: none;
 }
 
-.links {
-  padding-top: 15px;
+.input-container {
+  height: 3rem;
+  width: 90%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.block {
+  flex: 0 0 15%;
+  height: 100%;
+  width: 100%;
+  transition: background-color 0.5s ease;
+}
+
+#type {
+  position: absolute;
+  top: -50rem;
+}
+
+#main-input {
+  opacity: 0;
+  animation: fade-in 1s ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+  to {
+    opacity: 1;
+  }
 }
 </style>

@@ -4,17 +4,38 @@
   </div>
 </template>
 
+<script>
+export default {
+  head() {
+    return {
+      title: "Jackal | Scavenger Hunt",
+      meta: [
+        {
+          hid: "viewport",
+          name: "viewport",
+          content:
+            "viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no",
+        },
+        {
+          hid: "apple-mobile-web-app-status-bar-style",
+          name: "apple-mobile-web-app-status-bar-style",
+          content: "black-translucent",
+        },
+        {
+          hid: "theme-color",
+          name: "theme-color",
+          content: "#77c1f6",
+        },
+      ],
+    };
+  },
+};
+</script>
+
 <style>
 html {
-  font-family:
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
