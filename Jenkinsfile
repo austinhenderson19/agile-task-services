@@ -1,4 +1,6 @@
 pipeline {
+  tools {nodejs "nodejs"}
+  
   agent {
     docker {
       image 'node:alpine'
