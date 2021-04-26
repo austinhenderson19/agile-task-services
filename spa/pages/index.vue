@@ -71,7 +71,7 @@ export default Vue.extend({
 
       this.description = "";
 
-      axios.post("http://localhost:4000", { ...body });
+      axios.post("http://localhost/tasks", { ...body });
     },
   },
   computed: {
@@ -113,11 +113,11 @@ export default Vue.extend({
   mounted() {
     Plugins.Keyboard.setAccessoryBarVisible({ isVisible: true });
 
-    fetch("http://localhost:4000")
+    fetch("http://localhost/tasks")
       .then((val) => val.json())
       .then((val) => (this.tasks = val.data.reverse()));
 
-    fetch("http://localhost:4001")
+    fetch("http://localhost/task-types")
       .then((val) => val.json())
       .then((val) => (this.taskTypes = val.data));
   },

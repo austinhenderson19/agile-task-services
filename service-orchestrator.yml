@@ -5,6 +5,8 @@ services:
     build:
       context: ./tasks/
       dockerfile: Dockerfile
+    depends_on:
+      - mongodb
     ports:
       - "4000:4000"
     
@@ -34,5 +36,16 @@ services:
       - "27018:27018"
     volumes:
       - ./task-types/src/Database/PersistentData:/data/db
+    
+  proxy:
+    image: nginx:latest
+    depends_on:
+      - task-types-api
+      - task-api
+    volumes: 
+      - ./servers/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - 80:80
+      - 443:443
     
   
