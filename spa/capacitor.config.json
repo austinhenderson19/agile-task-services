@@ -1,0 +1,13 @@
+{
+  "appId": "app.agile.task.manager",
+  "appName": "Agile Task Keeper",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "dist",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}
