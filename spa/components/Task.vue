@@ -22,6 +22,10 @@ export default Vue.extend({
       if (this.task.type == 3) {
         return "#FD6666";
       }
+
+      if (this.task.type == 4) {
+        return "#a8e0ec";
+      }
     },
   },
 });

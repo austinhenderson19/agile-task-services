@@ -8,9 +8,11 @@
         <div class="input-container" id="main-input">
           <label class="block" for="type" :style="{backgroundColor: typeColor}"></label>
           <select name="type" id="type" v-model="selectedType">
-            <option value="1">Epic</option>
-            <option value="2">Story</option>
-            <option value="3">Bug</option>
+            <option
+              v-for="taskType in taskTypes"
+              :key="taskType.id"
+              :value="taskType.type"
+            >{{ taskType.description }}</option>
           </select>
           <input
             v-model="description"
@@ -44,12 +46,14 @@ export default Vue.extend({
     selectedType: number;
     description: string;
     tasks: { type: number | string; description: string }[];
+    taskTypes: { type: number | string; description: string }[];
   } {
     return {
       showWelcomeMessage: true,
       selectedType: 1,
       description: "",
       tasks: [],
+      taskTypes: [],
     };
   },
   methods: {
@@ -83,6 +87,10 @@ export default Vue.extend({
       if (this.selectedType == 3) {
         return "#FD6666";
       }
+
+      if (this.selectedType == 4) {
+        return "#a8e0ec";
+      }
     },
     placeholderText() {
       if (this.selectedType == 1) {
@@ -96,6 +104,10 @@ export default Vue.extend({
       if (this.selectedType == 3) {
         return "What Bug will you be squashing?";
       }
+
+      if (this.selectedType == 4) {
+        return "What Task would you like completed?";
+      }
     },
   },
   mounted() {
@@ -104,6 +116,10 @@ export default Vue.extend({
     fetch("http://localhost:4000")
       .then((val) => val.json())
       .then((val) => (this.tasks = val.data.reverse()));
+
+    fetch("http://localhost:4001")
+      .then((val) => val.json())
+      .then((val) => (this.taskTypes = val.data));
   },
 });
 </script>

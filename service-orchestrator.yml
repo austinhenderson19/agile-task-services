@@ -16,4 +16,23 @@ services:
       - "27017:27017"
     volumes:
       - ./tasks/src/Database/PersistentData:/data/db
+
+  task-types-api:
+    build:
+      context: ./task-types/
+      dockerfile: Dockerfile
+    depends_on:
+      - mysqldb
+    ports:
+      - "4001:4001"
+    
+  mysqldb:
+    image: mongo
+    logging:
+      driver: none
+    ports:
+      - "27018:27018"
+    volumes:
+      - ./task-types/src/Database/PersistentData:/data/db
+    
   
