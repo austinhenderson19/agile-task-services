@@ -1,5 +1,6 @@
 # Persistent data
 /tasks/src/Database/PersistentData
+/spa/ios
 
 # Logs
 logs
