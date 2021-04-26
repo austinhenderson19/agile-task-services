@@ -33,4 +33,5 @@ export class ExpressApplication {
     DatabaseConnection();
   }
 }
-asdfasdfa;
+
+// Uncomment this to cause an error.
